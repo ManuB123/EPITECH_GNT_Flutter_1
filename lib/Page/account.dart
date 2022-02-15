@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter/Components/appBar.dart';
+import 'package:test_flutter/data/userData.dart';
+import 'package:test_flutter/Components/userWidget.dart';
 
 class Account extends StatefulWidget {
   @override
@@ -8,8 +11,18 @@ class Account extends StatefulWidget {
 class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('Account', style: TextStyle(fontSize: 60))),
+    const user = Profile.user;
+    return Scaffold(
+      appBar: buildAppBar(context),
+      body: ListView(
+        physics: BouncingScrollPhysics(),
+        children: [
+          UserWidget(
+            image: user.image,
+            onClicked: () async {},
+          )
+        ],
+      )
     );
   }
 }
