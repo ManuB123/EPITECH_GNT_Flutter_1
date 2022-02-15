@@ -8,7 +8,7 @@ class Favorite extends StatefulWidget {
 class _FavoriteState extends State<Favorite> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(child: Text('Favorite', style: TextStyle(fontSize: 60))),
     );
   }

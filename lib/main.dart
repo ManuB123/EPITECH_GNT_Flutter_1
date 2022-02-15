@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) => setState(() =>currentIndex = index ),
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
             label: 'Home',
