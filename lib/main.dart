@@ -2,26 +2,25 @@ import 'package:flutter/material.dart';
 import 'Page/home.dart';
 import 'Page/favorite.dart';
 import 'Page/account.dart';
+import 'Page/search.dart';
+import 'Page/RecipeCreate.dart';
+import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+Future<void> main() async {
+  runApp(
+  MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.white,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+      primarySwatch: Colors.blue,
+      primaryColor: Colors.white,
+    ),
+    home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    )
+  );
 }
+
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -34,7 +33,9 @@ class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
   final screens = [
     Home(),
+    Search(),
     Favorite(),
+    RecipeCreate(),
     Account(),
   ];
   @override
@@ -49,19 +50,29 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: (index) => setState(() =>currentIndex = index ),
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined, color: Colors.black),
             label: 'Home',
-            backgroundColor: Colors.blue
+            backgroundColor: Colors.white
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
+              icon: Icon(Icons.search , color: Colors.black),
+              label: 'Search',
+              backgroundColor: Colors.white
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_outline_outlined, color: Colors.black),
               label: 'Favorite',
-              backgroundColor: Colors.blue
+              backgroundColor: Colors.white
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
+              icon: Icon(Icons.article_outlined, color: Colors.black),
+              label: 'Add Recipe',
+              backgroundColor: Colors.white
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle_outlined, color: Colors.black),
               label: 'Account',
-              backgroundColor: Colors.blue
+              backgroundColor: Colors.white
           )
         ],
       ),

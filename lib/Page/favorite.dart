@@ -10,7 +10,9 @@ class _FavoriteState extends State<Favorite> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text("favorite"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text("Favorite", style: TextStyle(color: Colors.black)),
       ),
       body: Center(child: Text('Favorite', style: TextStyle(fontSize: 60))),
     );
