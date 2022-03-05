@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../model/recipe.dart';
+import '../Page/RecipeDetails.dart';
+import './recipeDetailsWidget.dart';
 
 List<Widget> recipeSearchfromList(List<Recipe> recipes) {
   final List<Widget> list = [];
@@ -44,7 +46,7 @@ class RecipeSearchItemWidget extends StatelessWidget {
          ),
         ),
         Expanded(
-          flex: 2,
+          flex: 3,
           child: Padding(
             padding: const EdgeInsets.all(7.0),
             child: ListView(
@@ -64,7 +66,7 @@ class RecipeSearchItemWidget extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 2,
+          flex: 1,
           child: Padding(
             padding: const EdgeInsets.all(7.0),
             child: IconButton(
@@ -114,31 +116,6 @@ class RecipeSearchItemWidget extends StatelessWidget {
           color: Colors.redAccent,
         );
       }),
-    );
-  }
-}
-
-class RecipeDetails extends StatelessWidget {
-  final Recipe recipe;
-  const RecipeDetails({Key? key, required this.recipe}) : super(key: key);
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(recipe.name, style: TextStyle(color: Colors.black)),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
-      ),
     );
   }
 }
