@@ -5,25 +5,24 @@ import 'Page/account.dart';
 import 'Page/search.dart';
 import 'Page/RecipeCreate.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter/material.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
   MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
       primarySwatch: Colors.blue,
       primaryColor: Colors.white,
+      fontFamily: 'CircularStd',
     ),
     home: const MyHomePage(title: 'Flutter Demo Home Page'),
     )
   );
 }
 
-
-
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title,}) : super(key: key);
   final String title;
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -73,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(Icons.account_circle_outlined, color: Colors.black),
               label: 'Account',
               backgroundColor: Colors.white
-          )
+          ),
         ],
       ),
     );

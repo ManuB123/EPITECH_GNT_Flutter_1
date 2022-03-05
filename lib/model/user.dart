@@ -1,10 +1,10 @@
 class User {
-  final String image;
+  String image;
   final String name;
   final String email;
   final String description;
 
-  const User({
+  User({
     required this.image,
     required this.name,
     required this.email,

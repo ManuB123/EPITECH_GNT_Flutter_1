@@ -25,7 +25,7 @@ class _FavoriteState extends State<Favorite> {
           children: const [
             Text(
               "You can add or delete favorites at any time",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18, color: Color(0xffC1C1C1), fontFamily: 'CircularStd'),
             ),
             RecipeItemList(
               cover: '',
@@ -33,7 +33,6 @@ class _FavoriteState extends State<Favorite> {
               author: 'Agnes Dubois',
               rating: 4.2,
             ),
-            StarRating(rating: 4.8),
           ],
         ),
       ),
