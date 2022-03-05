@@ -26,7 +26,7 @@ class _AccountState extends State<Account> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text("My Profile", style: TextStyle(color: Colors.black)),
+        title: const Text("My Profile", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),

@@ -14,6 +14,7 @@ Future<void> main() async {
       theme: ThemeData(
       primarySwatch: Colors.blue,
       primaryColor: Colors.white,
+      fontFamily: 'CircularStd',
     ),
     home: const MyHomePage(title: 'Flutter Demo Home Page'),
     )
@@ -73,6 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
               backgroundColor: Colors.white
           ),
         ],
+        selectedIconTheme: const IconThemeData(color: Colors.deepOrange),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
       ),
     );
   }

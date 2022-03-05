@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter/Components/starRating.dart';
 
 import '../model/recipe.dart';
 import '../Page/RecipeDetails.dart';
@@ -20,7 +21,7 @@ class RecipeSearchItemWidget extends StatelessWidget {
   final String image;
   final String name;
   final String author;
-  final int note;
+  final double note;
   final bool isFav = false;
   final Recipe recipe;
 
@@ -60,7 +61,7 @@ class RecipeSearchItemWidget extends StatelessWidget {
                   "By " + author,
                   style: const TextStyle(fontStyle: FontStyle.italic),
                 ),
-                StarDisplay(note),
+                StarRating(rating: note),
               ],
             ),
           ),
@@ -104,18 +105,6 @@ class RecipeSearchItemWidget extends StatelessWidget {
           ),
         ),
       )
-    );
-  }
-
-  Widget StarDisplay(int input) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(5, (index) {
-        return Icon(
-          index < input ? Icons.star : Icons.star_border,
-          color: Colors.redAccent,
-        );
-      }),
     );
   }
 }

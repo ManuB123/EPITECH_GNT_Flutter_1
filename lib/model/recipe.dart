@@ -42,7 +42,7 @@ class Recipe {
   final String name;
   final String author_name;
   final String author_picture;
-  final int score;
+  final double score;
   final List<String> steps;
   final Map<String, int> ingredients;
   final String description;

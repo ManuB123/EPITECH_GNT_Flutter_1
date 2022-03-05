@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:test_flutter/data/recipe_data.dart';
+import 'package:test_flutter/Components/starRating.dart';
 
 final List<Widget> imageSliders = Recipe_Lopes.recipes
     .map((item) => Container(
@@ -14,12 +15,7 @@ final List<Widget> imageSliders = Recipe_Lopes.recipes
             Flexible(flex: 1, child:Row( children: [Text(item.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))])),
             Flexible(flex: 1, child: Row(
               children: const [
-                Text('4.0', style: TextStyle(color: Colors.deepOrange, fontSize: 18 )),
-                Icon(Icons.star, color: Colors.deepOrange),
-                Icon(Icons.star, color: Colors.deepOrange),
-                Icon(Icons.star, color: Colors.deepOrange),
-                Icon(Icons.star, color: Colors.deepOrange),
-                Icon(Icons.star_border, color: Colors.deepOrange),
+                StarRating(rating: 3.6),
               ],
             )),
           ],
