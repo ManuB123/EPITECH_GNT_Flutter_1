@@ -15,7 +15,7 @@ class _FavoriteState extends State<Favorite> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text("Your favorites", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+        title: Text("Your favorites ❤️", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(

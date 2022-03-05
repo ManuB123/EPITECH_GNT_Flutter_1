@@ -74,6 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
               backgroundColor: Colors.white
           ),
         ],
+        selectedIconTheme: const IconThemeData(color: Colors.deepOrange),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
       ),
     );
   }
