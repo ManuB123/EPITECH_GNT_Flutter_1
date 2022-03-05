@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter/Components/recipeItemList.dart';
+import 'package:test_flutter/Components/starRating.dart';
 
 class Favorite extends StatefulWidget {
   @override
@@ -12,9 +14,29 @@ class _FavoriteState extends State<Favorite> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text("Favorite", style: TextStyle(color: Colors.black)),
+        title: Text("Your Favorites", style: TextStyle(color: Colors.black)),
       ),
-      body: Center(child: Text('Favorite', style: TextStyle(fontSize: 60))),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              "You can add or delete favorites at any time",
+              style: TextStyle(fontSize: 18),
+            ),
+            RecipeItemList(
+              cover: '',
+              title: 'Alfredo pasta',
+              author: 'Agnes Dubois',
+              rating: 4.2,
+            ),
+            StarRating(rating: 4.8),
+          ],
+        ),
+      ),
     );
   }
 }
