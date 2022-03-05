@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 22, vertical: 25),
+        margin: const EdgeInsets.only(left: 22, top: 25, bottom: 0, right: 0),
         child: ListView(
           children: <Widget>[
             const Text("Take a look at those delicious recipes!", style: TextStyle(fontFamily: 'CircularStd', fontSize: 24, fontWeight: FontWeight.bold),),
