@@ -1,58 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter/data/userData.dart';
+import 'package:test_flutter/Components/userWidget.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:test_flutter/Components/ImageSlider.dart';
+import 'package:camera/camera.dart';
+import 'package:test_flutter/Page/Camera.dart';
 
 class UserWidget extends StatelessWidget {
-  final VoidCallback onClicked;
-  final String image;
-
   const UserWidget({
     Key? key,
-    required this.onClicked,
-    required this.image,
   }): super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: [
-          Image(),
-          Positioned(
-            bottom: 0,
-            right: 4,
-            child: EditButton()
-          )
-        ],
-      )
-    );
-  }
-
-  Widget EditButton() {
-    return ClipOval(
-      child:Container(
-        padding: EdgeInsets.all(8),
-        color: Colors.blue,
-        child: const Icon(
-          Icons.edit,
-          size: 20,
-          color: Colors.white,
+    return Column(
+      children: [
+        const SizedBox(height: 24),
+        Center(child: Text(Profile.user.name, style: const TextStyle(fontSize: 24))),
+        const SizedBox(height: 24),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 48),
+          child:Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 24),
+              Text(Profile.user.description, style: const TextStyle(fontSize: 16, height: 1.4))
+            ],
+          ) ,
         ),
-      ) ,
-    );
-  }
-
-  Widget Image() {
-    final myImage = NetworkImage(image);
-    return ClipOval(
-      child: Material(
-        color: Colors.transparent,
-        child: Ink.image(
-          image: myImage,
-          width: 128,
-          height: 128,
-          fit: BoxFit.cover,
-          child: InkWell(onTap: onClicked,),
+        const SizedBox(height: 24,),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 48),
+          child:Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IntrinsicHeight (
+                  child:Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: const [
+                          Text("Recipes"),
+                          Text("3")
+                        ],
+                      ),
+                      VerticalDivider(),
+                      Column(
+                        children: const [
+                          Text("Followers"),
+                          Text("160")
+                        ],
+                      ),
+                      VerticalDivider(),
+                      Column(
+                        children: const [
+                          Text("Following"),
+                          Text("120")
+                        ],
+                      )
+                    ],
+                  )
+              ),
+            ],
+          ) ,
         ),
-      ),
+        const SizedBox(height: 24),
+        const Divider(thickness: 2),
+        const SizedBox(height: 24),
+        Padding(padding: EdgeInsets.symmetric(horizontal: 48), child:const Text("My Recipes", style: TextStyle(fontSize: 24))),
+        const SizedBox(height: 24),
+        CarouselSlider(
+          options: CarouselOptions(
+            autoPlay: false,
+            aspectRatio: 2.0,
+            enlargeCenterPage: true,
+          ),
+          items: imageSliders,
+        ),
+        const SizedBox(height: 24),
+      ],
     );
   }
 }
