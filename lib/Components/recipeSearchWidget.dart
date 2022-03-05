@@ -6,7 +6,7 @@ List<Widget> recipeSearchfromList(List<Recipe> recipes) {
   final List<Widget> list = [];
 
   recipes.forEach((element) {
-    list.add(RecipeSearchItemWidget(onClicked: () async {}, image: element.image, name: element.name, author: element.author_name, note: element.score));
+    list.add(RecipeSearchItemWidget(onClicked: () async {}, image: element.image, name: element.name, author: element.author_name, note: element.score, recipe: element,));
     print(element);
   });
 
@@ -20,6 +20,7 @@ class RecipeSearchItemWidget extends StatelessWidget {
   final String author;
   final int note;
   final bool isFav = false;
+  final Recipe recipe;
 
   const RecipeSearchItemWidget({
     Key? key,
@@ -28,6 +29,7 @@ class RecipeSearchItemWidget extends StatelessWidget {
     required this.name,
     required this.author,
     required this.note,
+    required this.recipe,
   }): super(key: key);
 
   @override
@@ -38,7 +40,7 @@ class RecipeSearchItemWidget extends StatelessWidget {
          flex: 2,
          child: Padding(
            padding: const EdgeInsets.all(7.0),
-           child: Image(),
+           child: Image(context),
          ),
         ),
         Expanded(
@@ -69,6 +71,7 @@ class RecipeSearchItemWidget extends StatelessWidget {
               color: Colors.redAccent,
               icon: const Icon(Icons.favorite),
               onPressed: () {
+
               },
             ),
           ),
@@ -77,7 +80,7 @@ class RecipeSearchItemWidget extends StatelessWidget {
     );
   }
 
-  Widget Image() {
+  Widget Image(BuildContext context) {
     final myImage = NetworkImage(image);
     return ClipRect(
 
@@ -90,7 +93,12 @@ class RecipeSearchItemWidget extends StatelessWidget {
             width: 128,
             height: 128,
             fit: BoxFit.cover,
-            child: InkWell(onTap: onClicked,),
+            child: InkWell(onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RecipeDetails(recipe: recipe)),
+              );
+            }),
           ),
         ),
       )
@@ -106,6 +114,31 @@ class RecipeSearchItemWidget extends StatelessWidget {
           color: Colors.redAccent,
         );
       }),
+    );
+  }
+}
+
+class RecipeDetails extends StatelessWidget {
+  final Recipe recipe;
+  const RecipeDetails({Key? key, required this.recipe}) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(recipe.name, style: TextStyle(color: Colors.black)),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
     );
   }
 }
