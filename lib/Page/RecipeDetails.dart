@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter/Components/recipeIngredientWidget.dart';
+import 'package:test_flutter/Components/recipeStepsWidget.dart';
 import '../model/recipe.dart';
 
 import '../Components/recipeAuthorWidgets.dart';
 import '../Components/recipeDetailsWidget.dart';
+import '../Components/recipeIngredientWidget.dart';
 
 class RecipeDetails extends StatelessWidget {
   final Recipe recipe;
@@ -33,7 +36,7 @@ class RecipeDetails extends StatelessWidget {
               ),
             ),
             const Padding(padding:
-              EdgeInsets.fromLTRB(0, 10, 0, 0),
+              EdgeInsets.fromLTRB(0, 5, 0, 0),
               child: RecipeDetailsHeader(isServe: true, value: 2, unit: "p",),
             ),
             Container(
@@ -46,7 +49,23 @@ class RecipeDetails extends StatelessWidget {
                   color: Colors.black,
                   fontFamily: 'CircularStd',
                   fontWeight: FontWeight.bold),
-            ))
+            )),
+            ListView(
+              shrinkWrap: true,
+              children: getListIngredientsWidgetFromMap(recipe.ingredients),
+            ),
+            const Padding(padding: EdgeInsets.only(left: 15), child: Text(
+              "Steps",
+              style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.black,
+                  fontFamily: 'CircularStd',
+                  fontWeight: FontWeight.bold),
+            )),
+            ListView(
+              shrinkWrap: true,
+              children: getListStepsWidgetFromMap(recipe.steps),
+            ),
           ]
         )
       ),
