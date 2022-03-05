@@ -1,4 +1,4 @@
-import 'dart:ffi';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:test_flutter/Components/starRating.dart';
@@ -26,22 +26,35 @@ class RecipeItemList extends StatelessWidget {
         width: 124,
         height: 124,
         decoration: BoxDecoration(
-          image: const DecorationImage(
-            image: NetworkImage("https://i.imgur.com/PziaatN.jpg"),
+          image: DecorationImage(
+            image: NetworkImage(cover),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(10),
         ),
         ),
-        Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20), child: Column(children: [
-          Text(title, style: const TextStyle(fontSize: 16, fontFamily: 'CircularStd', fontWeight: FontWeight.bold)),
-          Text('By ' + author, style: const TextStyle(fontSize: 14, fontFamily: 'CircularStd', color: Color(0xffA9A9A9))),
-          StarRating(rating: rating),
-        ],))
-      ]
-    ),
-   decoration: const BoxDecoration(
-      border: Border(bottom: BorderSide(width: 1, color: Color(0xffC1C1C1))),
+        Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child: SizedBox(
+                child: Column(
+                  children: [
+                    Text(title,
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'CircularStd',
+                            fontWeight: FontWeight.bold)),
+                    Text('By ' + author,
+                        style: const TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'CircularStd',
+                            color: Color(0xffA9A9A9))),
+                    StarRating(rating: rating),
+                  ],
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+                width: 150))
+      ]),
+      decoration: const BoxDecoration(
+        border: Border(bottom: BorderSide(width: 1, color: Color(0xffC1C1C1))),
     ),
     padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
     );

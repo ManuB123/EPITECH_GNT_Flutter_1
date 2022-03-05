@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter/Components/recipeItemList.dart';
 import 'package:test_flutter/Components/starRating.dart';
+import 'package:test_flutter/data/recipe_data.dart';
 
 class Favorite extends StatefulWidget {
   @override
@@ -14,25 +15,22 @@ class _FavoriteState extends State<Favorite> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text("Your Favorites", style: TextStyle(color: Colors.black)),
+        title: Text("Your favorites", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics()),
         padding: const EdgeInsets.all(10),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
               "You can add or delete favorites at any time",
-              style: TextStyle(fontSize: 18, color: Color(0xffC1C1C1), fontFamily: 'CircularStd'),
+              style: TextStyle(fontSize: 16, color: Color(0xffC1C1C1), fontFamily: 'CircularStd'),
             ),
-            RecipeItemList(
-              cover: '',
-              title: 'Alfredo pasta',
-              author: 'Agnes Dubois',
-              rating: 4.2,
-            ),
+            SingleChildScrollView(
+              child: Column(children: recipes.map((e) => RecipeItemList(cover: e.image, title: e.name, rating: e.score, author: e.author_name)).toList())
+            )
           ],
         ),
       ),

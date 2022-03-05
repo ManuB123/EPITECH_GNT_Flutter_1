@@ -44,7 +44,7 @@ class StarRating extends StatelessWidget {
         ),
         Row(children: List.generate(starCount, (index) => buildStar(context, index)))
       ],
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
     );
   }
