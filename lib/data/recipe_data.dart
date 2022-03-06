@@ -1,15 +1,41 @@
 import 'package:test_flutter/model/recipe.dart';
+import 'package:localstorage/localstorage.dart';
 
 class Recipe_Lopes {
   List<String> steps = ["Ajouter du lopes"];
   Map<String, int > ingredients = { "lopes": 10 };
 
   static const recipes = [Recipe(image: "https://pbs.twimg.com/media/Ee6DZChXoAMePMe?format=jpg&name=large",
-      author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 3.6, name: "Indonesian chicken burger", steps: ["Ajouter du lopes"], ingredients: { "lopes": 10 }, description: 'miam'),
+      author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 3.6, name: "Indonesian chicken burger", steps: ["Ajouter du lopes", "Mettre un peu de eydouaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"], ingredients: { "lopes": 10 }, description: 'miam'),
     Recipe(image: "http://wishfulchef.com/wp-content/uploads/2011/10/ButternutSquashSoup.jpg",
         author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 4.9, name: "Butternut chicken soup", steps: ["Ajouter du lopes"], ingredients: { "lopes": 10 }, description: 'miam'),
     Recipe(image: "https://www.aldi.com.au/fileadmin/fm-dam/images/Recipes/2020/July/ALN3145_WK30_PD_455x315__COOKED-SALMON-POKE-BOWL-RECIPE_.jpg",
-        author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 5, name: "Grilled salmon pokebowl", steps: ["Ajouter du lopes"], ingredients: { "lopes": 10 }, description: 'miam')];
+        author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 5, name: "Grilled salmon pokebowl", steps: ["Ajouter du lopes" ,  "Mettre un peu de eydouaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"], ingredients: { "lopes": 10 }, description: 'miam')];
+}
+
+class LocalRecipe {
+  Future<List<Recipe>> getListRecipes() async {
+    final LocalStorage storage = LocalStorage('recipes');
+    dynamic data = storage.getItem('recipe');
+
+    var ready = await storage.ready;
+    if (data == null) {
+      data = recipes;
+      storage.setItem('recipe', data);
+    }
+
+    print(data);
+
+    return data;
+  }
+
+  void addRecipe(Recipe recipe) {
+    final LocalStorage storage = LocalStorage('recipes');
+    List<Recipe> data = storage.getItem('recipe');
+    data.add(recipe);
+
+    storage.setItem('recipe', data);
+  }
 }
 
 const recipes = [

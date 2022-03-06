@@ -6,6 +6,7 @@ import 'package:test_flutter/data/recipe_data.dart';
 class RecipeModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+  LocalRecipe localRecipeDB = LocalRecipe();
 
   List<Recipe> _suggestions = [];
   List<Recipe> get suggestions => _suggestions;
@@ -14,7 +15,6 @@ class RecipeModel extends ChangeNotifier {
   String get query => _query;
 
   void onQueryChanged(String query) async {
-    print(query);
     if (query == _query) return;
 
     _query = query;
@@ -22,9 +22,11 @@ class RecipeModel extends ChangeNotifier {
     notifyListeners();
 
     if (query.isEmpty) {
-
+      clear();
     } else {
-      _suggestions = Recipe_Lopes.recipes.toList().where((element) => element.name.toLowerCase().contains(query)).toList();
+      _suggestions = await localRecipeDB.getListRecipes();
+      _suggestions = _suggestions.where((element) => element.name.toLowerCase().contains(query)).toList();
+      //_suggestions = Recipe_Lopes.recipes.toList().where((element) => element.name.toLowerCase().contains(query)).toList();
     }
 
     _isLoading = false;
@@ -46,6 +48,7 @@ class Recipe {
   final List<String> steps;
   final Map<String, int> ingredients;
   final String description;
+  final bool isLiked = false;
 
   const Recipe({
     required this.image,
@@ -56,5 +59,20 @@ class Recipe {
     required this.steps,
     required this.ingredients,
     required this.description,
+    isLiked,
   });
+
+  Map<String, dynamic> toJson() =>
+      {
+        'image': image,
+        'author_name': author_name,
+        'author_picture': author_picture,
+        'name': name,
+        'score': score,
+        'steps': steps,
+        'ingredients': ingredients,
+        'description': description,
+        'isLiked': isLiked,
+      };
+
 }

@@ -6,6 +6,7 @@ import '../model/recipe.dart';
 import '../Components/recipeAuthorWidgets.dart';
 import '../Components/recipeDetailsWidget.dart';
 import '../Components/recipeIngredientWidget.dart';
+import './RecipeSteps.dart';
 
 class RecipeDetails extends StatelessWidget {
   final Recipe recipe;
@@ -52,6 +53,7 @@ class RecipeDetails extends StatelessWidget {
             )),
             ListView(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               children: getListIngredientsWidgetFromMap(recipe.ingredients),
             ),
             const Padding(padding: EdgeInsets.only(left: 15), child: Text(
@@ -64,7 +66,29 @@ class RecipeDetails extends StatelessWidget {
             )),
             ListView(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               children: getListStepsWidgetFromMap(recipe.steps),
+            ),
+            Container(
+                margin: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(15.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RecipeStepsPage(recipe: recipe)),
+                    );
+                  },
+                  child:
+                  const Text(
+                    "Read step by step"
+                  ),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.redAccent),
+                      padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                      textStyle:
+                      MaterialStateProperty.all(const TextStyle(fontSize: 12))),
+                ),
             ),
           ]
         )
