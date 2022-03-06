@@ -48,9 +48,9 @@ class Recipe {
   final List<String> steps;
   final Map<String, int> ingredients;
   final String description;
-  final bool isLiked = false;
+  bool isLiked = false;
 
-  const Recipe({
+  Recipe({
     required this.image,
     required this.author_name,
     required this.author_picture,
@@ -59,7 +59,7 @@ class Recipe {
     required this.steps,
     required this.ingredients,
     required this.description,
-    isLiked,
+    required this.isLiked,
   });
 
   Map<String, dynamic> toJson() =>
