@@ -25,7 +25,7 @@ class TrendingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 291,
+      width: MediaQuery.of(context).size.width < 500 ? 290 : 350,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,8 +35,8 @@ class TrendingCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.5),
               child: Image.network(
                 image,
-                width: 291,
-                height: 180,
+                width: MediaQuery.of(context).size.width < 500 ? 290 : 350,
+                height: MediaQuery.of(context).size.width < 500 ? 180 : 220,
                 fit: BoxFit.cover,
                 loadingBuilder: (context, child, progress) => progress == null ? child : const SizedBox(height: 25, width: 25, child: CircularProgressIndicator()),
               ),

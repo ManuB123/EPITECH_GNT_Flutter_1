@@ -23,8 +23,8 @@ class RecipeItemList extends StatelessWidget {
       Row(
       children: [
         Container(
-        width: 124,
-        height: 124,
+        width: MediaQuery.of(context).size.width < 500 ? 125 : 250,
+        height: MediaQuery.of(context).size.width < 500 ? 125 : 250,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(cover),

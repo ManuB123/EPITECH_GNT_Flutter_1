@@ -24,7 +24,7 @@ class RecentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      width: MediaQuery.of(context).size.width < 500 ? 150 : 200,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,8 +35,8 @@ class RecentCard extends StatelessWidget {
               child: Image.network(
                 image,
                 fit: BoxFit.cover,
-                width: 150,
-                height: 150,
+                width: MediaQuery.of(context).size.width < 500 ? 150 : 200,
+                height: MediaQuery.of(context).size.width < 500 ? 150 : 200,
                 loadingBuilder: (context, child, progress) => progress == null ? child : const SizedBox(height: 25, width: 25, child: CircularProgressIndicator()),
               ),
             ),

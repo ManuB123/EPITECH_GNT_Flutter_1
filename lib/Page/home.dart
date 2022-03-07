@@ -37,6 +37,16 @@ class _HomeState extends State<Home> {
               ),
               scrollDirection: Axis.horizontal,
             ),
+            if (MediaQuery.of(context).size.width > 500) const SizedBox(height: 35 - 10,),
+            if (MediaQuery.of(context).size.width > 500) const Text("Recommended recipes", style: TextStyle(fontFamily: 'CircularStd', fontSize: 20, fontWeight: FontWeight.w600),),
+            if (MediaQuery.of(context).size.width > 500) SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: recipes.map((e) => RecentCard(name: e.name, score: e.score, image: e.image)).toList(),
+              ),
+              scrollDirection: Axis.horizontal,
+            ),
           ],
         ),
       )
