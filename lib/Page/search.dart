@@ -22,7 +22,7 @@ class _SearchState extends State<Search> {
       elevation: 0,
       title: Text("Search our recipes", style: TextStyle(color: Colors.black)),
     ),
-      body: ChangeNotifierProvider(
+      body: Center(child: ChangeNotifierProvider(
         create: (context) => RecipeModel(),
         child: Consumer<RecipeModel>(
           builder: (context, model, _) => FloatingSearchBar(
@@ -62,7 +62,7 @@ class _SearchState extends State<Search> {
             },
           ),
         ),
-      )
+      ))
     );
   }
 }

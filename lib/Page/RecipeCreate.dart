@@ -14,12 +14,12 @@ class RecipeCreate extends StatelessWidget {
         title: const Text("Create a new recipe", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
       ),
       body: Center(child: SingleChildScrollView(child: Container(child: Column(children: [
-        Container(width: 335, height: 212,  decoration: BoxDecoration(
+        Container(width: MediaQuery.of(context).size.width - 100, height: 212,  decoration: BoxDecoration(
           image: const DecorationImage(
             image: NetworkImage('https://i.imgur.com/8zuAgNl.jpg'),
             fit: BoxFit.cover,
           ),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(30),
         )),
       const FakeInput(content: 'Title of Recipe'),
       const RecipeDetailsHeader(isServe: true, unit: 'p', value: 2),

@@ -10,13 +10,31 @@ class FakeInput extends StatelessWidget {
  
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text(content), decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0XffC1C1C1)),
-        color: Colors.white,
+    return Container(
+      margin: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(32),
+          border: Border.all(color: const Color(0XffC1C1C1)),
+          ),
+      
+      child: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: EdgeInsets.only(left: 5),
+              child: Text(
+                content,
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'CircularStd',
+                    fontWeight: FontWeight.bold),
+              ),
+            )
+          ),
+        ],
       ),
-      width: 335,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      margin: EdgeInsets.all(10));
-  }
-}
+    );
+  }}

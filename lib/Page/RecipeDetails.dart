@@ -27,7 +27,7 @@ class RecipeDetails extends StatelessWidget {
             Container(
               child: Padding(padding:
                 const EdgeInsets.fromLTRB(45, 0, 35, 10),
-                child: Image.network(recipe.image, width: 300, height: 150, fit: BoxFit.cover)
+                child: Image.network(recipe.image, width: 300, height: MediaQuery.of(context).size.width < 500 ? 150 : 300, fit: BoxFit.cover)
               ),
             ),
             Container(
