@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 import '../model/recipe.dart';
 
+class ButtonState extends State<StatefulWidget> {
+  Color _iconColor = Colors.white;
 
+  @override
+  Widget build(BuildContext) {
+    return ListTile(
+        leading: IconButton(
+        icon: Icon(Icons.star, color: _iconColor),
+        onPressed: () {
+          setState(() {
+          _iconColor = Colors.yellow;
+        });
+     },
+    ));
+  }
+}
 
 class RecipeDetailsHeader extends StatelessWidget {
   final bool isServe;

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter/Page/RecipeDetails.dart';
 import 'Page/home.dart';
 import 'Page/favorite.dart';
 import 'Page/account.dart';
 import 'Page/search.dart';
 import 'Page/RecipeCreate.dart';
+import 'data/recipe_data.dart';
 import 'package:camera/camera.dart';
 
 Future<void> main() async {

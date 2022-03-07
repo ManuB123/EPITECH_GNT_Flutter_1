@@ -23,7 +23,18 @@ class RecipeAuthor extends StatelessWidget {
       children: <Widget>[
        Expanded(
          flex: 0,
-         child: Image(context),
+         child: Container(
+        width: 50,
+        height: 50,
+        margin: const EdgeInsets.only(bottom: 0, right: 10, left: 0, top: 0),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(image),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.circular(50),
+        ),
+        ),
        ),
         Expanded(
             flex: 1,

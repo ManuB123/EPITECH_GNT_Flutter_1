@@ -9,8 +9,8 @@ import '../Components/recipeIngredientWidget.dart';
 
 class RecipeStepsPage extends StatelessWidget {
   final Recipe recipe;
-  const RecipeStepsPage({Key? key, required this.recipe}) : super(key: key);
-
+  RecipeStepsPage({Key? key, required this.recipe}) : super(key: key);
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,11 @@ class RecipeStepsPage extends StatelessWidget {
                 child: Image.network(recipe.image, width: 300, height: 150, fit: BoxFit.cover)
               ),
             ),
-            Container(
+            index < recipe.steps.length ? Container(
                 margin: const EdgeInsets.all(15.0),
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
-                  "prouut",
+                  recipe.steps[index],
                 ),
                 decoration: ShapeDecoration(
                     color: Colors.white,
@@ -45,7 +45,34 @@ class RecipeStepsPage extends StatelessWidget {
                         )
                     )
                 )
+            ) : ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context); },
+              child:
+                const Text(
+                  "Quit"
+                ),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.redAccent),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                textStyle:
+                MaterialStateProperty.all(const TextStyle(fontSize: 12))),
             ),
+            index < recipe.steps.length ? ElevatedButton(
+              onPressed: () {
+                index += 1;
+                (context as Element).markNeedsBuild();
+              },
+              child:
+              const Text(
+                  "Next"
+              ),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.redAccent),
+                  padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                  textStyle:
+                  MaterialStateProperty.all(const TextStyle(fontSize: 12))),
+            ) : Container(),
           ]
         )
       ),

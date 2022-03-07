@@ -40,14 +40,14 @@ class RecipeModel extends ChangeNotifier {
 }
 
 class Recipe {
-  final String image;
-  final String name;
-  final String author_name;
-  final String author_picture;
-  final double score;
-  final List<String> steps;
-  final Map<String, int> ingredients;
-  final String description;
+  String image;
+  String name;
+  String author_name;
+  String author_picture;
+  double score;
+  List<String> steps;
+  Map<String, String> ingredients;
+  String description;
   bool isLiked = false;
 
   Recipe({

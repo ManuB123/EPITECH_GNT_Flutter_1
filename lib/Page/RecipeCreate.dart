@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter/Components/FakeInput.dart';
 import 'package:test_flutter/Components/recipeDetailsWidget.dart';
+import 'package:test_flutter/Components/recipeStepsWidget.dart';
+import 'package:test_flutter/data/recipe_data.dart';
 
-class RecipeCreate extends StatefulWidget {
-  @override
-  State<RecipeCreate> createState() => _RecipeCreateState();
-}
-
-class _RecipeCreateState extends State<RecipeCreate> {
+class RecipeCreate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -33,8 +30,11 @@ class _RecipeCreateState extends State<RecipeCreate> {
       const FakeInput(content: 'Oignons'),
       const Text('+ Add new ingredient', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.redAccent)),
       Container(child: Text('Steps', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)), margin: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 10)),
-      const FakeInput(content: 'Wash the rice until water runs clear.'),
-      const FakeInput(content: 'Cut the beef into strips then sears it in a pan. '),
+                ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: getListStepsWidgetFromMap(recipes.first.steps),
+                ),
       const Text('+ Add new step', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.redAccent)),
       Container(
                 margin: const EdgeInsets.all(15.0),
