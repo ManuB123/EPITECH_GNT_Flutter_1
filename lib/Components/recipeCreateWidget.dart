@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
 import '../model/recipe.dart';
 
-List<Widget> getListIngredientsWidgetFromMap(Map<String, String> data) {
-  List<Widget> widgets = [];
-
-  data.forEach((key, value) {
-    widgets.add(RecipeIngredients(name: key, unit: "g", value: value));
-  });
-
-  return widgets;
-}
-
-class RecipeIngredients extends StatelessWidget {
-  final String name;
-  final String value;
-  final String unit;
-  const RecipeIngredients({Key? key, required this.name, required this.unit, required this.value}) : super(key: key);
+class RecipeCreateHeader extends StatelessWidget {
+  final bool isServe;
+  String value;
+  RecipeCreateHeader({Key? key, required this.isServe, required this.value}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +24,31 @@ class RecipeIngredients extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
+            flex: 0,
+            child: Container(
+                decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: const BorderSide(
+                    width: 5,
+                    color: Colors.white,
+                  )
+                )
+              ),
+              child: Icon(
+                isServe == true ? Icons.people : Icons.lock_clock,
+                color: Colors.red,
+                size: 30.0,
+              ),
+            )
+          ),
+          Expanded(
             flex: 2,
             child: Padding(
               padding: EdgeInsets.only(left: 5),
               child: Text(
-                name,
+                isServe == true ? "Serves" : "Cook time",
                 style: const TextStyle(
                     fontSize: 16,
                     fontFamily: 'CircularStd',
@@ -50,13 +59,12 @@ class RecipeIngredients extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.centerRight,
-              child: Text(
-                value.toString() + unit,
-                style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                    fontFamily: 'CircularStd',
-                    fontWeight: FontWeight.bold),
+              child: TextField(
+                onChanged: (text) { value = text; },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: '',
+                ),
               ),
             )
           )

@@ -6,11 +6,11 @@ class Recipe_Lopes {
   Map<String, int > ingredients = { "lopes": 10 };
 
   static final recipes = [Recipe(image: "https://pbs.twimg.com/media/Ee6DZChXoAMePMe?format=jpg&name=large",
-      author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 3.6, name: "Indonesian chicken burger", steps: ["Ajouter du lopes", "Mettre un peu de eydouaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"], ingredients: { "lopes": 10 }, description: 'miam', isLiked: false),
+      author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 3.6, name: "Indonesian chicken burger", steps: ["Ajouter du lopes", "Mettre un peu de eydouaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"], ingredients: { "lopes": "10" }, description: 'miam', isLiked: false),
     Recipe(image: "http://wishfulchef.com/wp-content/uploads/2011/10/ButternutSquashSoup.jpg",
-        author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 4.9, name: "Butternut chicken soup", steps: ["Ajouter du lopes"], ingredients: { "lopes": 10 }, description: 'miam', isLiked: false),
+        author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 4.9, name: "Butternut chicken soup", steps: ["Ajouter du lopes"], ingredients: { "lopes": "10" }, description: 'miam', isLiked: false),
     Recipe(image: "https://www.aldi.com.au/fileadmin/fm-dam/images/Recipes/2020/July/ALN3145_WK30_PD_455x315__COOKED-SALMON-POKE-BOWL-RECIPE_.jpg",
-        author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 5, name: "Grilled salmon pokebowl", steps: ["Ajouter du lopes" ,  "Mettre un peu de eydouaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"], ingredients: { "lopes": 10 }, description: 'miam', isLiked: false)];
+        author_name: "Alexis lopes", author_picture: "https://media-exp1.licdn.com/dms/image/C5603AQFxIX8VwOWAIQ/profile-displayphoto-shrink_200_200/0/1554474920022?e=1651708800&v=beta&t=KUs4DbdmzeBuRztgzOhzoLRXVR-YVpuPhTYv2jgCqaE", score: 5, name: "Grilled salmon pokebowl", steps: ["Ajouter du lopes" ,  "Mettre un peu de eydouaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"], ingredients: { "lopes": "10" }, description: 'miam', isLiked: false)];
 }
 
 class LocalRecipe {
@@ -22,8 +22,22 @@ class LocalRecipe {
     if (data == null) {
       data = recipes;
       await storage.setItem('recipe', data);
+  }
+
+    return data;
+  }
+
+  static Future<List<Recipe>> getListRecipesFavorite() async {
+    final LocalStorage storage = LocalStorage('recipes');
+    dynamic data = storage.getItem('recipe');
+    var ready = await storage.ready;
+
+    if (data == null) {
+      data = recipes;
+      await storage.setItem('recipe', data);
     }
 
+    data = data.map((e) => e.isLiked == true);
     return data;
   }
 
@@ -36,7 +50,7 @@ class LocalRecipe {
     await storage.setItem('recipe', data);
   }
 
-  void updateRecipe(Recipe recipe) async {
+  static void updateRecipe(Recipe recipe) async {
     final LocalStorage storage = LocalStorage('recipes');
     List<Recipe> data = storage.getItem('recipe');
 
@@ -50,6 +64,8 @@ class LocalRecipe {
   }
 }
 
+Recipe emptyRecipe = Recipe(image: "", author_name: "Alexis Lopes", author_picture: "", name: "", score: 0, steps: [], ingredients: {}, description: "", isLiked: false);
+
 final recipes = [
   Recipe(
   image: 'https://i.imgur.com/PziaatN.jpg',
@@ -58,7 +74,7 @@ final recipes = [
   score: 4.2,
   name: 'French toast with maple syrup',
   steps: ['Cut the bread into slices', 'Whisk the eggs', 'Dip bread into egg mixture', 'Fry bread on both sides on a pan', 'Serve with maple syrup'],
-  ingredients: {'bread': 1, 'eggs': 2, 'maple syrup': 1},
+  ingredients: {'bread': "1", 'eggs': "2", 'maple syrup': "1"},
   description: '', isLiked: false),
   Recipe(
   image: 'https://i.imgur.com/YUlkq0T.png',
@@ -67,7 +83,7 @@ final recipes = [
   score: 2.3,
   name: 'Beef meatballs',
   steps: ['Cut onions finely', 'Roll minced beef and onions into balls (2cm wide approx.)', 'Cook on pan at medium heat'],
-  ingredients: {'Minced beef': 200, 'Onions': 2},
+  ingredients: {'Minced beef': "200", 'Onions': "2"},
   description: '',
   isLiked: false),
   Recipe(
@@ -77,7 +93,7 @@ final recipes = [
       score: 5.0,
       name: 'Red wine lamb with broccolis',
       steps: ['Steam the broccolis', 'Make a sauce with the redwine', 'Cook lamb', 'Assemble ingredients and serve'],
-      ingredients: {'Broccolis': 200, 'Lamb Rib': 1, 'Red Wine': 20},
+      ingredients: {'Broccolis': "200", 'Lamb Rib': "1", 'Red Wine': "20"},
       description: '', isLiked: false),
   Recipe(
   image: 'https://i.imgur.com/lmbuViv.jpg',
@@ -86,6 +102,6 @@ final recipes = [
       score: 3.8,
       name: 'Creamy curry salmon',
       steps: ['Cut salmon', 'Cook salmon', 'Serve with sauce'],
-      ingredients: {'Salmon': 100, 'Curry': 1, 'Cream': 20},
+      ingredients: {'Salmon': "100", 'Curry': "1", 'Cream': "20"},
       description: '', isLiked: false),
 ];

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter/Components/starRating.dart';
 
 import '../model/recipe.dart';
+import '../data/recipe_data.dart';
 import '../Page/RecipeDetails.dart';
 import './recipeDetailsWidget.dart';
 
@@ -71,10 +72,12 @@ class RecipeSearchItemWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(7.0),
             child: IconButton(
-              color: Colors.redAccent,
+              color: recipe.isLiked == true ? Colors.redAccent : Colors.grey,
               icon: const Icon(Icons.favorite),
               onPressed: () {
-
+                recipe.isLiked = !recipe.isLiked;
+                LocalRecipe.updateRecipe(recipe);
+                (context as Element).markNeedsBuild();
               },
             ),
           ),
